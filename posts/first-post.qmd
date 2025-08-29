@@ -4,7 +4,6 @@ author: "Emily Kendrick"
 date: "8/28/25"
 categories:
   - reflection
-draft: false
 ---
 
 I am super excited to take MicroPs this semester! I think that I learned a lot in E85 because the labs forced me to, and I am interested in learning more and gaining more skills in using microcontrollers and FPGAs. I definitely was a bit scared of this class going into it (based on what others have told me while taking it), but one of my biggest goals is to not forget that I am capable of figuring things out. I want to be proud of my work and improve my problem-solving abilities alongside all the practical skills I will gain from this course. 
