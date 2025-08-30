@@ -1,5 +1,24 @@
 ---
 title: "Lab 1: FPGA and MCU Setup and Testing"
+format: html
 ---
+
+## Introduction
+
+## Design and Testing Methodology
+
+## Technical Documentation
+
+### Block Diagram
+
+### Schematic
+
+## Results and Discussion
+
+### Testbench Simulation
+
+## Conclusion
+
+## AI Prototype Summary
 
 
