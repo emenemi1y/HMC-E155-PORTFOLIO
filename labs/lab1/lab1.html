@@ -225,10 +225,11 @@ ul.task-list li input[type="checkbox"] {
 <p>I had trouble testing the blinking LED, but was able to successfully test the seven segment display and the combinational logic LEDs. ### Testbench Simulation</p>
 <p><img src="images/led_test.png" class="img-fluid"> <img src="images/led_test_sim.png" class="img-fluid"> Figure 4: (top) Output waveform using an automated testbench for the two LEDs controlled with combinational logic. (bottom) Simulation output.</p>
 <p><img src="images/sevseg_test.png" class="img-fluid"> <img src="images/sevseg_test_sim.png" class="img-fluid"> Figure 5: (top) Output waveform using an automated testbench for the combinational logic associated with the seven-segmenet display. (bottom) Simulation output.</p>
+<p><img src="images/top_test.png" class="img-fluid"> <img src="images/top_test_sim.png" class="img-fluid"> Figure 6: (top) Output waveform using an automated testbench for the top module. (bottom) Simulation output.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>A development board was assembled to control an UPduino 3.1 FPGA. The digital design using this FPGA successfully a) output a distinct digit on a seven-segment display based on an input from 4xDIP switch, b) used combinational logic and inputs from 4xDIP switch to control two LEDs, and c) blinked an external LED using the on-board high-speed oscillator. Everything was successfully tested except for the blinking LED. I spent a total of 15 hours on this lab.</p>
+<p>A development board was assembled to control an UPduino 3.1 FPGA. The digital design using this FPGA successfully a) output a distinct digit on a seven-segment display based on an input from 4xDIP switch, b) used combinational logic and inputs from 4xDIP switch to control two LEDs, and c) blinked an external LED using the on-board high-speed oscillator. Automatic testbenches were created and used for testing of the SystemVerilog code.</p>
 </section>
 <section id="ai-prototype-summary" class="level2">
 <h2 class="anchored" data-anchor-id="ai-prototype-summary">AI Prototype Summary</h2>

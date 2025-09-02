@@ -102,14 +102,14 @@
     "href": "labs/lab1/lab1.html#results-and-discussion",
     "title": "Lab 1: FPGA and MCU Setup and Testing",
     "section": "Results and Discussion",
-    "text": "Results and Discussion\nPhysically, the design performed well. It performed all of the required tasks, including displaying an output on a seven-segment display and controlling three external LEDs.\nI had trouble testing the blinking LED, but was able to successfully test the seven segment display and the combinational logic LEDs. ### Testbench Simulation\n  Figure 4: (top) Output waveform using an automated testbench for the two LEDs controlled with combinational logic. (bottom) Simulation output.\n  Figure 5: (top) Output waveform using an automated testbench for the combinational logic associated with the seven-segmenet display. (bottom) Simulation output."
+    "text": "Results and Discussion\nPhysically, the design performed well. It performed all of the required tasks, including displaying an output on a seven-segment display and controlling three external LEDs.\nI had trouble testing the blinking LED, but was able to successfully test the seven segment display and the combinational logic LEDs. ### Testbench Simulation\n  Figure 4: (top) Output waveform using an automated testbench for the two LEDs controlled with combinational logic. (bottom) Simulation output.\n  Figure 5: (top) Output waveform using an automated testbench for the combinational logic associated with the seven-segmenet display. (bottom) Simulation output.\n  Figure 6: (top) Output waveform using an automated testbench for the top module. (bottom) Simulation output."
   },
   {
     "objectID": "labs/lab1/lab1.html#conclusion",
     "href": "labs/lab1/lab1.html#conclusion",
     "title": "Lab 1: FPGA and MCU Setup and Testing",
     "section": "Conclusion",
-    "text": "Conclusion\nA development board was assembled to control an UPduino 3.1 FPGA. The digital design using this FPGA successfully a) output a distinct digit on a seven-segment display based on an input from 4xDIP switch, b) used combinational logic and inputs from 4xDIP switch to control two LEDs, and c) blinked an external LED using the on-board high-speed oscillator. Everything was successfully tested except for the blinking LED. I spent a total of 15 hours on this lab."
+    "text": "Conclusion\nA development board was assembled to control an UPduino 3.1 FPGA. The digital design using this FPGA successfully a) output a distinct digit on a seven-segment display based on an input from 4xDIP switch, b) used combinational logic and inputs from 4xDIP switch to control two LEDs, and c) blinked an external LED using the on-board high-speed oscillator. Automatic testbenches were created and used for testing of the SystemVerilog code."
   },
   {
     "objectID": "labs/lab1/lab1.html#ai-prototype-summary",
