@@ -88,14 +88,14 @@
     "href": "labs/lab1/lab1.html#design-and-testing-methodology",
     "title": "Lab 1: FPGA and MCU Setup and Testing",
     "section": "Design and Testing Methodology",
-    "text": "Design and Testing Methodology\nThe seven-segment display consists of diodes corresponding to each of the seven segmenets. It was controlled using combinational logic and the 4 DIP switches. Each possible combination of switches lights up a different combination of segments, which corresponds to a distinct digit.\nThe ouptut of LED0 corresponds to S0 XOR S1, where S0 and S1 are the first two DIP switches. The output of LED1 corresponds to S2 AND S3, where S2 and S3 are the second two DIP switches.\nThe on-board high-speed oscillator (HSOSC) form the iCE40 UltraPlus primitive library was used to generate a clock signal at 48 MHz. A counter was used to reduce this frequency to 2.4 Hz by either generating a signal to turn the LED on or off every 10,000,000 clock cycles.\nThe design was developed using four modules: a top module, a module to control the blinking LED, a module to control the combinational logic LEDs, and a module for the seven-segment display logic."
+    "text": "Design and Testing Methodology\nThe seven-segment display consists of diodes corresponding to each of the seven segmenets. It was controlled using combinational logic and the 4 DIP switches. Each possible combination of switches lights up a different combination of segments, which corresponds to a distinct digit.\nThe ouptut of LED0 corresponds to S0 XOR S1, where S0 and S1 are the first two DIP switches. The output of LED1 corresponds to S2 AND S3, where S2 and S3 are the second two DIP switches.\nThe on-board high-speed oscillator (HSOSC) form the iCE40 UltraPlus primitive library was used to generate a clock signal at 48 MHz. A counter was used to reduce this frequency to 2.4 Hz by either generating a signal to turn the LED on or off every 10,000,000 clock cycles (corresponding to 1/4.8 seconds).\nThe design was developed using four modules: a top module, a module to control the blinking LED, a module to control the combinational logic LEDs, and a module for the seven-segment display logic."
   },
   {
     "objectID": "labs/lab1/lab1.html#technical-documentation",
     "href": "labs/lab1/lab1.html#technical-documentation",
     "title": "Lab 1: FPGA and MCU Setup and Testing",
     "section": "Technical Documentation",
-    "text": "Technical Documentation\nThe source code for the project can be found in the associated Github repository.\n\nBlock Diagram\n\n\nSchematic"
+    "text": "Technical Documentation\nThe source code for the project can be found in the associated Github repository.\nAccording to the HDSP-511A datasheet, the maximum current rating for a single segment in the seven-segment display is 20 mA. Using a 1 kΩ resistor, the total current draw for a single segment is 1.35 mA, well below the maximum allowable current. Math is shown below.\n Figure 1: Calculation for maximum current draw through a single segment of the 7-segment display, assuming the segment is on.\n\nBlock Diagram\n Figure 2: Block diagram\n\n\nSchematic\n Figure 3: Electrical schematic"
   },
   {
     "objectID": "labs/lab1/lab1.html#results-and-discussion",

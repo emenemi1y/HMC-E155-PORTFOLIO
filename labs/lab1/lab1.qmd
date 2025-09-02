@@ -51,10 +51,14 @@ Figure 4: (top) Output waveform using an automated testbench for the two LEDs co
 ![](images/sevseg_test_sim.png)
 Figure 5: (top) Output waveform using an automated testbench for the combinational logic associated with the seven-segmenet display. (bottom) Simulation output.
 
+![](images/top_test.png)
+![](images/top_test_sim.png)
+Figure 6: (top) Output waveform using an automated testbench for the top module. (bottom) Simulation output.
+
 
 ## Conclusion
 
-A development board was assembled to control an UPduino 3.1 FPGA. The digital design using this FPGA successfully a) output a distinct digit on a seven-segment display based on an input from 4xDIP switch, b) used combinational logic and inputs from 4xDIP switch to control two LEDs, and c) blinked an external LED using the on-board high-speed oscillator. Everything was successfully tested except for the blinking LED. I spent a total of 15 hours on this lab. 
+A development board was assembled to control an UPduino 3.1 FPGA. The digital design using this FPGA successfully a) output a distinct digit on a seven-segment display based on an input from 4xDIP switch, b) used combinational logic and inputs from 4xDIP switch to control two LEDs, and c) blinked an external LED using the on-board high-speed oscillator. Automatic testbenches were created and used for testing of the SystemVerilog code.
 
 ## AI Prototype Summary
 
