@@ -1,31 +1,17 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "E155 Portfolio",
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
     "section": "",
-    "text": "Emily Kendrick is a senior engineering major at Harvey Mudd College interested in pursuing electrical engineering. This is her website!"
+    "text": "Link: https://hmc-e155.github.io/"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "resources.html#course-website",
+    "href": "resources.html#course-website",
+    "title": "Resources",
     "section": "",
-    "text": "About this site"
-  },
-  {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "E155 Blog",
-    "section": "",
-    "text": "Initial reflection\n\n\n\n\n\n\n\n\nAug 28, 2025\n\n\nEmily Kendrick\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "labs.html#lab-2",
-    "href": "labs.html#lab-2",
-    "title": "Labs",
-    "section": "Lab 2:",
-    "text": "Lab 2:"
+    "text": "Link: https://hmc-e155.github.io/"
   },
   {
     "objectID": "labs.html#lab-2-multiplexed-7-segment-display",
@@ -70,18 +56,18 @@
     "text": "Lab 7: The Advanced Encryption Standard"
   },
   {
-    "objectID": "resources.html",
-    "href": "resources.html",
-    "title": "Resources",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "E155 Portfolio",
     "section": "",
-    "text": "Link: https://hmc-e155.github.io/"
+    "text": "Emily Kendrick is a senior engineering major at Harvey Mudd College interested in pursuing electrical engineering. This is her website!"
   },
   {
-    "objectID": "resources.html#course-website",
-    "href": "resources.html#course-website",
-    "title": "Resources",
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "E155 Blog",
     "section": "",
-    "text": "Link: https://hmc-e155.github.io/"
+    "text": "Initial reflection\n\n\n\n\n\n\n\n\nAug 28, 2025\n\n\nEmily Kendrick\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/first-post.html",
