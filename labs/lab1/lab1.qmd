@@ -19,7 +19,7 @@ The design was developed using four modules: a top module, a module to control t
 
 ## Technical Documentation
 
-The source code for the project can be found in the associated <a href="url">Github repository</a>.
+The source code for the project can be found in the associated <a href="https://github.com/emenemi1y/e155-lab1">Github repository</a>.
 
 According to the HDSP-511A datasheet, the maximum current rating for a single segment in the seven-segment display is 20 mA. Using a 1 kΩ resistor, the total current draw for a single segment is 1.35 mA, well below the maximum allowable current. Math is shown below. 
 
