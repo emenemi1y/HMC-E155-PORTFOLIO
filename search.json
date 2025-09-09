@@ -56,6 +56,55 @@
     "text": "Lab 7: The Advanced Encryption Standard"
   },
   {
+    "objectID": "labs/lab2/lab2.html",
+    "href": "labs/lab2/lab2.html",
+    "title": "Lab 2: Multiplexed 7-Segment Display",
+    "section": "",
+    "text": "In this lab, a design was implemented on the FPGA to display two numbers 0-F (hex) on a dual seven-segment display using two 4-input DIP switch. One seven-segment SystemVerilog module and 7 FPGA pins was used to drive both halves of the display by implementing time multiplexing. Five singular LEDs also displayed the sum of the two digits displayed on the seven-segment displays in binary."
+  },
+  {
+    "objectID": "labs/lab2/lab2.html#introduction",
+    "href": "labs/lab2/lab2.html#introduction",
+    "title": "Lab 2: Multiplexed 7-Segment Display",
+    "section": "",
+    "text": "In this lab, a design was implemented on the FPGA to display two numbers 0-F (hex) on a dual seven-segment display using two 4-input DIP switch. One seven-segment SystemVerilog module and 7 FPGA pins was used to drive both halves of the display by implementing time multiplexing. Five singular LEDs also displayed the sum of the two digits displayed on the seven-segment displays in binary."
+  },
+  {
+    "objectID": "labs/lab2/lab2.html#design-and-testing-methodology",
+    "href": "labs/lab2/lab2.html#design-and-testing-methodology",
+    "title": "Lab 2: Multiplexed 7-Segment Display",
+    "section": "Design and Testing Methodology",
+    "text": "Design and Testing Methodology\nThe seven-segment display consists of diodes corresponding to each of the seven segmenets. It was controlled using combinational logic and 4 DIP switches. Each possible combination of switches lights up a different combination of segments, which corresponds to a distinct digit. Since only one seven-segment display can be controlled at a time by a single SystemVerilog module and 7 FPGA pins, the two digits were blinked on and off at a frequency of 4800 Hz, a frequency too high for the human eye to detect.\nThe on-board high-speed oscillator from the iCE40 UltraPlus primitive library was used to generate a clock signal at 48 MHz. A counter was used to reduce this frequency to 4800 Hz by inverting an output signal every 10,000 clock cycles. At each of the reduced clock cycles, a multiplexer is used to choose which of the seven-segment displays to turn on (by applying power to the common anode or not).\nA PNP transistor was used to drive each of the common anodes of the seven-segment display, since the FPGA GPIO pins are incapable of driving sufficient current to power all seven segments.\nThe output of LED[5:0] corresponds to the sum of the two digits displayed on the seven-segment displays.\nThe design was developed using four modules: a top module, a for the clock counter, a module for the seven-segment display logic, and a module for the 2:1 multiplexer."
+  },
+  {
+    "objectID": "labs/lab2/lab2.html#technical-documentation",
+    "href": "labs/lab2/lab2.html#technical-documentation",
+    "title": "Lab 2: Multiplexed 7-Segment Display",
+    "section": "Technical Documentation",
+    "text": "Technical Documentation\nThe source code for the project can be found in the associated Github repository\n\nCalculations\n\n\nBlock Diagram\n\n\nSchematic"
+  },
+  {
+    "objectID": "labs/lab2/lab2.html#results-and-discussion",
+    "href": "labs/lab2/lab2.html#results-and-discussion",
+    "title": "Lab 2: Multiplexed 7-Segment Display",
+    "section": "Results and Discussion",
+    "text": "Results and Discussion\n\nTestbench Simulation"
+  },
+  {
+    "objectID": "labs/lab2/lab2.html#conclusion",
+    "href": "labs/lab2/lab2.html#conclusion",
+    "title": "Lab 2: Multiplexed 7-Segment Display",
+    "section": "Conclusion",
+    "text": "Conclusion"
+  },
+  {
+    "objectID": "labs/lab2/lab2.html#ai-prototype-summary",
+    "href": "labs/lab2/lab2.html#ai-prototype-summary",
+    "title": "Lab 2: Multiplexed 7-Segment Display",
+    "section": "AI Prototype Summary",
+    "text": "AI Prototype Summary"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "E155 Portfolio",
