@@ -215,12 +215,17 @@ ul.task-list li input[type="checkbox"] {
 <p>The source code for the project can be found in the associated <a href="https://github.com/emenemi1y/e155-lab2">Github repository</a></p>
 <section id="calculations" class="level3">
 <h3 class="anchored" data-anchor-id="calculations">Calculations</h3>
+<p>According to the iCE40 UltraPlus Family Data Sheet section 4.17, the maximum output current for a single FPGA I/O pin (IOL / IOH) is 8 mA. Using a 150 Ω resistor, and with a diode forward voltage of 2.0V, the amount of current draw for a single segment is 8.67 mA, already exceeding the maximum allowable current draw for a pin. Seven segments will require 60.7 mA of current.</p>
+<p>To account for this, a PNP transistor can be used to provide enough current for the entire display. The base of the transistor is connected to the FPGA pin in series with a 2.2 kΩ resistor, which limits the current through the pin to 1.1 mA. The emitter is connected to power, and the base is connected in series with the LED segent, a 150 Ω resistor, and an FPGA output pin. The PNP transistor has a DC current gain of 80 for the magnitudes of currents desired, which is plenty large enough for what is required.</p>
+<p><img src="images/diode_calculations.jpeg" class="img-fluid"> Figure 1: Calculation for current draw through each of the seven segments and the current draw through the FPGA pin when using the transistor.</p>
 </section>
 <section id="block-diagram" class="level3">
 <h3 class="anchored" data-anchor-id="block-diagram">Block Diagram</h3>
+<p><img src="images/Lab2bloc.png" class="img-fluid"> Figure 2: Block diagram</p>
 </section>
 <section id="schematic" class="level3">
 <h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
+<p><img src="images/lab2schem.PNG" class="img-fluid"> Figure 3: Electrical schematic</p>
 </section>
 </section>
 <section id="results-and-discussion" class="level2">
