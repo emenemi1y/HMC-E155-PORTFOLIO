@@ -44,8 +44,43 @@ Figure 3: Electrical schematic
 
 ## Results and Discussion
 
+The design performed as expected. It displayed the two digits without any blinking or bleeding visible to the human eye, and controlled five external LEDs. 
+
 ### Testbench Simulation
+
+![](images/top-wf.png)
+Figure 4: A screenshot of the testbench simulation demonstrating successful running of the top module. 
+
+![](images/counter-wf.png)
+Figure 5: A screenshot of a testbench simluation demonstrating the counter module. The period of the clock was increased from 20 ns to 20000 ns, as expected. 
+
+![](images/mux-wf.png)
+Figure 6: A screenshot of a testbench simulation demonstrating the mux module. 
+
+![](images/sevseg-wf.png)
+Figure 7: A screenshot of a testbench simulation demonstrating the sevseg module. 
+
+The design met all intended objectives. 
 
 ## Conclusion
 
+The design successfully implemented time-multiplexing to blink two seven-segment LEDs using only seven output FPGA pins and a single sevseg module. The LEDs were blinked at a frequency of 4800 Hz. Five other LEDs displayed the sum of the two values displayed on the seven segment displays. 
+
 ## AI Prototype Summary
+
+I asked ChatGPT to create a SystemVerilog HDL module to time multiplex a single seven segment decoder to decode two sets of input bits and drive two sets of seven output bits. It created a reasonable script to perform this task, which synthesized on the first try. One thing I noticed is that ChatGPT does not separate functions into seperate modules, and instead leaves everything in a top module, which can make it harder to understand. 
+
+I then asked it to do it again using my files from Lab 1. I don't think it parsed my files well, because it couldn't extract the actual name of the module or the clock that I used. The output is shown below: 
+
+![](images/AI_prototype-1.png)
+![](images/AI_prototype-2.png)
+![](images/AI_prototype-3.png)
+![](images/AI_prototype-4.png)
+![](images/AI_prototype-5.png)
+![](images/AI_prototype-6.png)
+
+
+
+
+
+
