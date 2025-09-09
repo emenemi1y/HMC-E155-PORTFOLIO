@@ -88,21 +88,21 @@
     "href": "labs/lab2/lab2.html#results-and-discussion",
     "title": "Lab 2: Multiplexed 7-Segment Display",
     "section": "Results and Discussion",
-    "text": "Results and Discussion\n\nTestbench Simulation"
+    "text": "Results and Discussion\nThe design performed as expected. It displayed the two digits without any blinking or bleeding visible to the human eye, and controlled five external LEDs.\n\nTestbench Simulation\n Figure 4: A screenshot of the testbench simulation demonstrating successful running of the top module.\n Figure 5: A screenshot of a testbench simluation demonstrating the counter module. The period of the clock was increased from 20 ns to 20000 ns, as expected.\n Figure 6: A screenshot of a testbench simulation demonstrating the mux module.\n Figure 7: A screenshot of a testbench simulation demonstrating the sevseg module.\nThe design met all intended objectives."
   },
   {
     "objectID": "labs/lab2/lab2.html#conclusion",
     "href": "labs/lab2/lab2.html#conclusion",
     "title": "Lab 2: Multiplexed 7-Segment Display",
     "section": "Conclusion",
-    "text": "Conclusion"
+    "text": "Conclusion\nThe design successfully implemented time-multiplexing to blink two seven-segment LEDs using only seven output FPGA pins and a single sevseg module. The LEDs were blinked at a frequency of 4800 Hz. Five other LEDs displayed the sum of the two values displayed on the seven segment displays."
   },
   {
     "objectID": "labs/lab2/lab2.html#ai-prototype-summary",
     "href": "labs/lab2/lab2.html#ai-prototype-summary",
     "title": "Lab 2: Multiplexed 7-Segment Display",
     "section": "AI Prototype Summary",
-    "text": "AI Prototype Summary"
+    "text": "AI Prototype Summary\nI asked ChatGPT to create a SystemVerilog HDL module to time multiplex a single seven segment decoder to decode two sets of input bits and drive two sets of seven output bits. It created a reasonable script to perform this task, which synthesized on the first try. One thing I noticed is that ChatGPT does not separate functions into seperate modules, and instead leaves everything in a top module, which can make it harder to understand.\nI then asked it to do it again using my files from Lab 1. I don’t think it parsed my files well, because it couldn’t extract the actual name of the module or the clock that I used. The output is shown below:"
   },
   {
     "objectID": "index.html",
