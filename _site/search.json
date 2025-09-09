@@ -88,7 +88,7 @@
     "href": "labs/lab2/lab2.html#results-and-discussion",
     "title": "Lab 2: Multiplexed 7-Segment Display",
     "section": "Results and Discussion",
-    "text": "Results and Discussion\nThe design performed as expected. It displayed the two digits without any blinking or bleeding visible to the human eye, and controlled five external LEDs.\n\nTestbench Simulation\n Figure 4: A screenshot of the testbench simulation demonstrating successful running of the top module.\n  Figure 5: A screenshot of a testbench simluation demonstrating the counter module. The period of the clock was increased from 20 ns to 20000 ns, as expected.\n : A screenshot of a testbench simulation demonstrating the mux module.\n Figure 7: A screenshot of a testbench simulation demonstrating the sevseg module.\nThe design met all intended objectives."
+    "text": "Results and Discussion\nThe design performed as expected. It displayed the two digits without any blinking or bleeding visible to the human eye, and controlled five external LEDs.\n\nTestbench Simulation\n Figure 4: A screenshot of the testbench simulation demonstrating successful running of the top module.\n  Figure 5: A screenshot of a testbench simluation demonstrating the counter module. The period of the clock was increased from 20 ns to 20000 ns, as expected.\n   Figure 6: A screenshot of a testbench simulation demonstrating the mux module.\n Figure 7: A screenshot of a testbench simulation demonstrating the sevseg module.\nThe design met all intended objectives."
   },
   {
     "objectID": "labs/lab2/lab2.html#conclusion",

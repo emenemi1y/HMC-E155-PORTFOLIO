@@ -56,7 +56,7 @@ The design performed as expected. It displayed the two digits without any blinki
 Figure 5: A screenshot of a testbench simluation demonstrating the counter module. The period of the clock was increased from 20 ns to 20000 ns, as expected. 
 
 ![](images/mux-wf.png)
-<br>\ 
+<br>\hi
 Figure 6: A screenshot of a testbench simulation demonstrating the mux module. 
 
 ![](images/sevseg-wf.png)
