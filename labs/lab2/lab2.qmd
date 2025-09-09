@@ -39,7 +39,7 @@ Figure 2: Block diagram
 
 ### Schematic
 
-![](images/lab2schem.PNG)
+![](images/lab2schematic.jpeg)
 Figure 3: Electrical schematic
 
 ## Results and Discussion
