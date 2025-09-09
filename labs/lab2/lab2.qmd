@@ -56,8 +56,9 @@ The design performed as expected. It displayed the two digits without any blinki
 Figure 5: A screenshot of a testbench simluation demonstrating the counter module. The period of the clock was increased from 20 ns to 20000 ns, as expected. 
 
 ![](images/mux-wf.png)
-<br>\hi
+<p>
 Figure 6: A screenshot of a testbench simulation demonstrating the mux module. 
+</p>
 
 ![](images/sevseg-wf.png)
 <br>Figure 7: A screenshot of a testbench simulation demonstrating the sevseg module. 
@@ -66,7 +67,7 @@ The design met all intended objectives.
 
 ## Conclusion
 
-The design successfully implemented time-multiplexing to blink two seven-segment LEDs using only seven output FPGA pins and a single sevseg module. The LEDs were blinked at a frequency of 4800 Hz. Five other LEDs displayed the sum of the two values displayed on the seven segment displays. 
+The design successfully implemented time-multiplexing to blink two seven-segment LEDs using only seven output FPGA pins and a single sevseg module. The LEDs were blinked at a frequency of 4800 Hz. Five other LEDs displayed the sum of the two values displayed on the seven segment displays. I spent 10 hours on this lab. 
 
 ## AI Prototype Summary
 
