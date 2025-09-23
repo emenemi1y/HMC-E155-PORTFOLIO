@@ -168,6 +168,55 @@
     "text": "AI Prototype Summary\nI asked ChatGPT to create a SystemVerilog HDL module to use the HSOSC in the FPGA and blink an LED at 2Hz, taking full advantage of SystemVerilog syntax. Right off the bat, I noticed it used “wire” even after I told it not to use wire. It did successfully recognize the clock frequency of the FPGA. The design synthesized on the first try, so there were no errors. The solution it gave me was very similar to how I implemented the blinking LED. The ChatGPT output is given below."
   },
   {
+    "objectID": "labs/lab3/lab3.html",
+    "href": "labs/lab3/lab3.html",
+    "title": "Lab 3: Keypad Scanner",
+    "section": "",
+    "text": "In this lab, a design was implemented on the FPGA to display two numbers 0-F (hex) on a dual seven-segment display read from a 4x4 keypad input. One seven-segment SystemVerilog module and 7 FPGA pins was used to drive both halves of the display using time multiplexing. The seven-segment display shows the last two hexadecimal digits pressed. Inputs from the keypad were read by scanning through each of the possible combinations of rows and columns."
+  },
+  {
+    "objectID": "labs/lab3/lab3.html#introduction",
+    "href": "labs/lab3/lab3.html#introduction",
+    "title": "Lab 3: Keypad Scanner",
+    "section": "",
+    "text": "In this lab, a design was implemented on the FPGA to display two numbers 0-F (hex) on a dual seven-segment display read from a 4x4 keypad input. One seven-segment SystemVerilog module and 7 FPGA pins was used to drive both halves of the display using time multiplexing. The seven-segment display shows the last two hexadecimal digits pressed. Inputs from the keypad were read by scanning through each of the possible combinations of rows and columns."
+  },
+  {
+    "objectID": "labs/lab3/lab3.html#design-and-testing-methodology",
+    "href": "labs/lab3/lab3.html#design-and-testing-methodology",
+    "title": "Lab 3: Keypad Scanner",
+    "section": "Design and Testing Methodology",
+    "text": "Design and Testing Methodology\nSeven segment display:\nThe seven-segment display consists of diodes corresponding to each of the seven segmenets. It was controlled using combinational logic and 4 DIP switches. Each possible combination of switches lights up a different combination of segments, which corresponds to a distinct digit. Since only one seven-segment display can be controlled at a time by a single SystemVerilog module and 7 FPGA pins, the two digits were blinked on and off at a frequency of 4800 Hz, a frequency too high for the human eye to detect.\nThe on-board high-speed oscillator from the iCE40 UltraPlus primitive library was used to generate a clock signal at 48 MHz. A counter was used to reduce this frequency to 4800 Hz by inverting an output signal every 10,000 clock cycles. At each of the reduced clock cycles, a multiplexer is used to choose which of the seven-segment displays to turn on (by applying power to the common anode or not).\nA PNP transistor was used to drive each of the common anodes of the seven-segment display, since the FPGA GPIO pins are incapable of driving sufficient current to power all seven segments.\nKeypad:\nPower was applied to each column of the keypad one at a time using an output from the FPGA at a frequency of x Hz. For each column, all inputs from each row were read. If a keypress was detected, a new input was displayed on the seven-segment display. While one key is pressed, no other inputs are read. Once a key is unpressed, the scanner module FSM resumes scanning.\nThe entire design was developed using five modules. This included “scanner” for the scanner FSM, “debounce” for the debounce FSM (which accounts for switch debouncing when a key is pressed), “numberbank” which stores the numbers being pressed, “sevseg” which contains the combinational logic to light up the LEDs on the seven-segment display, and a top module."
+  },
+  {
+    "objectID": "labs/lab3/lab3.html#technical-documentation",
+    "href": "labs/lab3/lab3.html#technical-documentation",
+    "title": "Lab 3: Keypad Scanner",
+    "section": "Technical Documentation",
+    "text": "Technical Documentation\nThe source code for this lab can be found in the associated Github repository\n\nBlock Diagram\n  Figure 1: Block diagram\n\n\nSchematic"
+  },
+  {
+    "objectID": "labs/lab3/lab3.html#results-and-discussion",
+    "href": "labs/lab3/lab3.html#results-and-discussion",
+    "title": "Lab 3: Keypad Scanner",
+    "section": "Results and Discussion",
+    "text": "Results and Discussion\nThe design did not work as expected. There is likely a timing issue that is causing it to be stuck in state 8 (which was not apparent through simulation), and is not registering the button presses.\n\nTestbench Simulation\n  Figure 2: Simulation waveforms for the top module."
+  },
+  {
+    "objectID": "labs/lab3/lab3.html#conclusion",
+    "href": "labs/lab3/lab3.html#conclusion",
+    "title": "Lab 3: Keypad Scanner",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe design did not work. I spent 25 hours on this lab."
+  },
+  {
+    "objectID": "labs/lab3/lab3.html#ai-prototype-summary",
+    "href": "labs/lab3/lab3.html#ai-prototype-summary",
+    "title": "Lab 3: Keypad Scanner",
+    "section": "AI Prototype Summary",
+    "text": "AI Prototype Summary"
+  },
+  {
     "objectID": "posts/first-post.html",
     "href": "posts/first-post.html",
     "title": "Initial reflection",

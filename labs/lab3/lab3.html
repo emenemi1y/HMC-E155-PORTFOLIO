@@ -154,8 +154,26 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#design-and-testing-methodology" id="toc-design-and-testing-methodology" class="nav-link" data-scroll-target="#design-and-testing-methodology">Design and Testing Methodology</a></li>
+  <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation</a>
+  <ul class="collapse">
+  <li><a href="#block-diagram" id="toc-block-diagram" class="nav-link" data-scroll-target="#block-diagram">Block Diagram</a></li>
+  <li><a href="#schematic" id="toc-schematic" class="nav-link" data-scroll-target="#schematic">Schematic</a></li>
+  </ul></li>
+  <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion">Results and Discussion</a>
+  <ul class="collapse">
+  <li><a href="#testbench-simulation" id="toc-testbench-simulation" class="nav-link" data-scroll-target="#testbench-simulation">Testbench Simulation</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#ai-prototype-summary" id="toc-ai-prototype-summary" class="nav-link" data-scroll-target="#ai-prototype-summary">AI Prototype Summary</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -179,8 +197,48 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In this lab, a design was implemented on the FPGA to display two numbers 0-F (hex) on a dual seven-segment display read from a 4x4 keypad input. One seven-segment SystemVerilog module and 7 FPGA pins was used to drive both halves of the display using time multiplexing. The seven-segment display shows the last two hexadecimal digits pressed. Inputs from the keypad were read by scanning through each of the possible combinations of rows and columns.</p>
+</section>
+<section id="design-and-testing-methodology" class="level2">
+<h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
+<p>Seven segment display:</p>
+<p>The seven-segment display consists of diodes corresponding to each of the seven segmenets. It was controlled using combinational logic and 4 DIP switches. Each possible combination of switches lights up a different combination of segments, which corresponds to a distinct digit. Since only one seven-segment display can be controlled at a time by a single SystemVerilog module and 7 FPGA pins, the two digits were blinked on and off at a frequency of 4800 Hz, a frequency too high for the human eye to detect.</p>
+<p>The on-board high-speed oscillator from the iCE40 UltraPlus primitive library was used to generate a clock signal at 48 MHz. A counter was used to reduce this frequency to 4800 Hz by inverting an output signal every 10,000 clock cycles. At each of the reduced clock cycles, a multiplexer is used to choose which of the seven-segment displays to turn on (by applying power to the common anode or not).</p>
+<p>A PNP transistor was used to drive each of the common anodes of the seven-segment display, since the FPGA GPIO pins are incapable of driving sufficient current to power all seven segments.</p>
+<p>Keypad:</p>
+<p>Power was applied to each column of the keypad one at a time using an output from the FPGA at a frequency of x Hz. For each column, all inputs from each row were read. If a keypress was detected, a new input was displayed on the seven-segment display. While one key is pressed, no other inputs are read. Once a key is unpressed, the scanner module FSM resumes scanning.</p>
+<p>The entire design was developed using five modules. This included “scanner” for the scanner FSM, “debounce” for the debounce FSM (which accounts for switch debouncing when a key is pressed), “numberbank” which stores the numbers being pressed, “sevseg” which contains the combinational logic to light up the LEDs on the seven-segment display, and a top module.</p>
+</section>
+<section id="technical-documentation" class="level2">
+<h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h2>
+<p>The source code for this lab can be found in the associated <a href="https://github.com/emenemi1y/e155-lab3">Github repository</a></p>
+<section id="block-diagram" class="level3">
+<h3 class="anchored" data-anchor-id="block-diagram">Block Diagram</h3>
+<p><img src="images/lab3_block.png" class="img-fluid"> <br> Figure 1: Block diagram</p>
+</section>
+<section id="schematic" class="level3">
+<h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
+</section>
+</section>
+<section id="results-and-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="results-and-discussion">Results and Discussion</h2>
+<p>The design did not work as expected. There is likely a timing issue that is causing it to be stuck in state 8 (which was not apparent through simulation), and is not registering the button presses.</p>
+<section id="testbench-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="testbench-simulation">Testbench Simulation</h3>
+<p><img src="images/wf.png" class="img-fluid"> <br> Figure 2: Simulation waveforms for the top module.</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>The design did not work. I spent 25 hours on this lab.</p>
+</section>
+<section id="ai-prototype-summary" class="level2">
+<h2 class="anchored" data-anchor-id="ai-prototype-summary">AI Prototype Summary</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
