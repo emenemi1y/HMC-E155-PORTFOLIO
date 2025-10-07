@@ -217,6 +217,55 @@
     "text": "AI Prototype Summary"
   },
   {
+    "objectID": "labs/lab5/lab5.html",
+    "href": "labs/lab5/lab5.html",
+    "title": "Lab 5: Interrupts",
+    "section": "",
+    "text": "In this lab, a design was implemented on the MCU to use a quadrature motor encoder to calculate the velocity of a motor. The motor was connected to a power supply and powered with 0-10V DC to spin at a rate of up to 2-3 rev/s."
+  },
+  {
+    "objectID": "labs/lab5/lab5.html#introduction",
+    "href": "labs/lab5/lab5.html#introduction",
+    "title": "Lab 5: Interrupts",
+    "section": "",
+    "text": "In this lab, a design was implemented on the MCU to use a quadrature motor encoder to calculate the velocity of a motor. The motor was connected to a power supply and powered with 0-10V DC to spin at a rate of up to 2-3 rev/s."
+  },
+  {
+    "objectID": "labs/lab5/lab5.html#design-and-testing-methodology",
+    "href": "labs/lab5/lab5.html#design-and-testing-methodology",
+    "title": "Lab 5: Interrupts",
+    "section": "Design and Testing Methodology",
+    "text": "Design and Testing Methodology\nThe quadrature encoder can be used to measure the speed and direction of a motor. It consists of a patterned disk on the motor and two sensors that are 90 degrees out of phase with one another. By tracking the outputs of each of the two sensors, both velocity and direction can be determined.\nInterrupts and timers on the STM32L432KC microcontroller were used to calculate velocity. The quadrature encoder had two outputs: A and B, each of which correspond to a sensor output in the motor. Both the negative and positive edges of each of the motor encoder outputs were used to trigger interrupts. Therefore, 120*4 = 480 edges were detected per revolution. These interrupts enabled a flag that indicated a counter should be incremented; the counter and a timer were used to calculate an average velocity over the course of a second. The direction was calculated by measuring the phase of the A and B encoder outputs relative to each other."
+  },
+  {
+    "objectID": "labs/lab5/lab5.html#technical-documentation",
+    "href": "labs/lab5/lab5.html#technical-documentation",
+    "title": "Lab 5: Interrupts",
+    "section": "Technical Documentation",
+    "text": "Technical Documentation\nThe source code for the project can be found in the associated Github repository\n\nCalculations\nAccording to the motor specifications, the quadrature encoder has 408 pulses per rotation. Since I am using every positive and negative edge, that means there are 4 interrupts enabled for every pulse. Therefore, an interrupt should be triggered 408*4 = 1632 times each revolution.\nRevolutions per second are calculated by taking the average velocity over the course of a second. The number of edges detected is counted for a second, then divided by 1632.\n\n\nSchematic\n Figure 1: Electrical schematic\n\n\nInterrupt Flowchart\n Figure 2: Interrupt Flowchart"
+  },
+  {
+    "objectID": "labs/lab5/lab5.html#results-and-discussion",
+    "href": "labs/lab5/lab5.html#results-and-discussion",
+    "title": "Lab 5: Interrupts",
+    "section": "Results and Discussion",
+    "text": "Results and Discussion\nThe design performed as expected. It displayed the average velocity at a rate of 1 Hz and with minimal error and recorded the direction of the motor.\n\nAccuracy\nAt 10.03V, my program was measuring that the velocity was around 2.393 rev/s (Figure 4). I also measured the output of the motor encoder using an oscilloscope (see Figure 3 below) and found that one pulse had a period of 1.023ms, corresponding to a velocity of 2.396 rev/s, indicating an error of 0.12%.\n Figure 3: Image of the output waveform of output A of the motor encoder. Note the average period of 1.023 ms.\n Figure 4: Velocity output\n\n\nPolling Comparison\nAt 10.02V, the oscilloscope was measuring a period of 1.26 ms, corresponding to a velocity of 2.389 rev/s. My program using interrupts output a velocity of roughly 2.392 rev/s, which indicates an error of 0.13%.\nI reran a separate program that used polling to count the number of pulses instead of interrupts. This program gave me a velocity of around 2.406 rev/s. Because of motor drift, the velocity according to the oscilloscope was now 2.384 rev/s, indicating an error of 0.75%, much higher than the error using the interrupts. I still used an interrupt for the amount of time that the velocity was calculated and printed, so it makes sense that the measured velocity was higher than the actual velocity because of the latency of the GPIO pin read. Since it took time to read the GPIO pin, more GPIO pin outputs were measured after the interrupt was enabled and the interrupt flag was checked."
+  },
+  {
+    "objectID": "labs/lab5/lab5.html#conclusion",
+    "href": "labs/lab5/lab5.html#conclusion",
+    "title": "Lab 5: Interrupts",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe design successfully implemented interrupts to calculate the velocity of a DC motor using a quadrature encoder. By detecting all of the positive and negative edges of both A and B outputs of the encoder, a high accuracy was able to be achieved. Direction was calculated using the phase difference of the two pulses from the A and B encoder outputs. I spent around 10-12 hours on this lab."
+  },
+  {
+    "objectID": "labs/lab5/lab5.html#ai-prototype-summary",
+    "href": "labs/lab5/lab5.html#ai-prototype-summary",
+    "title": "Lab 5: Interrupts",
+    "section": "AI Prototype Summary",
+    "text": "AI Prototype Summary\nAI gave me the following code:\n #include \"stm32l432xx.h\"\n\n#define COUNTS_PER_REV   (408 * 4)      // quadrature x4 resolution\n#define SAMPLE_PERIOD_MS 100\n\nvolatile int32_t last_count = 0;\nvolatile float encoder_speed_rps = 0.0f;\n\n/* crude blocking delay assuming 4 MHz MSI clock */\nstatic void delay_ms(uint32_t ms)\n{\n    for (volatile uint32_t i = 0; i &lt; ms * 4000; i++);\n}\n\nvoid Encoder_Init(void)\n{\n    /* 1. Enable GPIOB and TIM2 clocks */\n    RCC-&gt;AHB2ENR  |= RCC_AHB2ENR_GPIOBEN;\n    RCC-&gt;APB1ENR1 |= RCC_APB1ENR1_TIM2EN;\n\n    /* 2. Configure PB0/PB1 as AF1 (TIM2_CH3/TIM2_CH4) */\n    GPIOB-&gt;MODER &= ~((3U &lt;&lt; (0 * 2)) | (3U &lt;&lt; (1 * 2)));   // clear mode bits\n    GPIOB-&gt;MODER |=  ((2U &lt;&lt; (0 * 2)) | (2U &lt;&lt; (1 * 2)));   // AF mode\n    GPIOB-&gt;AFR[0] &= ~((0xF &lt;&lt; (0 * 4)) | (0xF &lt;&lt; (1 * 4)));\n    GPIOB-&gt;AFR[0] |=  ((1U &lt;&lt; (0 * 4)) | (1U &lt;&lt; (1 * 4)));  // AF1 = TIM2\n    GPIOB-&gt;OSPEEDR |= (3U &lt;&lt; (0 * 2)) | (3U &lt;&lt; (1 * 2));    // high speed\n\n    /* 3. Configure TIM2 in encoder mode using CH3 & CH4 */\n    TIM2-&gt;CR1 = 0;                  // disable counter during setup\n    TIM2-&gt;SMCR = 3;                 // SMS = 011 → encoder mode 3 (count on both inputs)\n    TIM2-&gt;CCMR2 = (1U &lt;&lt; 0) | (1U &lt;&lt; 8);  // CC3S=01, CC4S=01 (map TI3 & TI4)\n    TIM2-&gt;CCER = 0;                 // both channels non-inverted\n    TIM2-&gt;ARR = 0xFFFFFFFF;         // 32-bit counter max\n    TIM2-&gt;CNT = 0;                  // reset counter\n    TIM2-&gt;CR1 |= TIM_CR1_CEN;       // enable counter\n}\n\nint32_t Encoder_GetCount(void)\n{\n    return (int32_t)TIM2-&gt;CNT;\n}\n\nfloat Encoder_GetSpeed(void)\n{\n    int32_t new_count = Encoder_GetCount();\n    int32_t delta = new_count - last_count;\n    last_count = new_count;\n\n    encoder_speed_rps = ((float)delta / COUNTS_PER_REV) / (SAMPLE_PERIOD_MS / 1000.0f);\n    return encoder_speed_rps;\n}\n\nint main(void)\n{\n    Encoder_Init();\n\n    while (1) {\n        delay_ms(SAMPLE_PERIOD_MS);\n        float speed = Encoder_GetSpeed();  // revolutions per second\n        // TODO: send via UART or use for control\n    }\n}\n\nAI was insistent on using Hardware Timer Encoder mode instead of the interrupts I told it to use. It took some fiddling with AI to get the code to fit with my system (using pins that were available on the breakout board, not using HAL since I didn’t have it on my computer and didn’t want to look for it, using a timer I wanted it to use), and then it didn’t even end up working. I am not completely sure what was wrong with it in the end, since I don’t understand Hardware Timer Encoder mode, but it did seem good at replacing pins I wanted it to replace and changing around the timers when I asked."
+  },
+  {
     "objectID": "posts/first-post.html",
     "href": "posts/first-post.html",
     "title": "Initial reflection",
