@@ -25,14 +25,14 @@ Revolutions per second are calculated by taking the average velocity over the co
 ### Schematic
 
 ![](images/lab5_schematic.png)
-<p>
+<br> <p>
 Figure 1: Electrical schematic
 </p>
 
 ### Interrupt Flowchart
 
 ![](images/lab5_interrupt_flowchart.drawio.png)
-<p>
+<br> <p>
 Figure 2: Interrupt Flowchart
 </p>
 
@@ -45,12 +45,12 @@ The design performed as expected. It displayed the average velocity at a rate of
 At 10.03V, my program was measuring that the velocity was around 2.393 rev/s (Figure 4). I also measured the output of the motor encoder using an oscilloscope (see Figure 3 below) and found that one pulse had a period of 1.023ms, corresponding to a velocity of 2.396 rev/s, indicating an error of 0.12%. 
 
 ![](images/IMG_2220.jpg)
-<p>
+<br> <p>
 Figure 3: Image of the output waveform of output A of the motor encoder. Note the average period of 1.023 ms.
 </p>
 
 ![](images/velocity.png)
-<p>
+<br> <p>
 Figure 4: Velocity output 
 </p>
 
