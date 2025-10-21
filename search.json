@@ -56,6 +56,48 @@
     "text": "Lab 7: The Advanced Encryption Standard"
   },
   {
+    "objectID": "labs/lab6/lab6.html",
+    "href": "labs/lab6/lab6.html",
+    "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
+    "section": "",
+    "text": "In this lab, a design was implemented on the MCU to read a temperature from a temperature sensor using SPI communication, and display this temperature on a webpage using a UART connection. Using the webpage, the resolution of the temperature sensor can be changed and a LED can be turned on and off."
+  },
+  {
+    "objectID": "labs/lab6/lab6.html#introduction",
+    "href": "labs/lab6/lab6.html#introduction",
+    "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
+    "section": "",
+    "text": "In this lab, a design was implemented on the MCU to read a temperature from a temperature sensor using SPI communication, and display this temperature on a webpage using a UART connection. Using the webpage, the resolution of the temperature sensor can be changed and a LED can be turned on and off."
+  },
+  {
+    "objectID": "labs/lab6/lab6.html#design-and-testing-methodology",
+    "href": "labs/lab6/lab6.html#design-and-testing-methodology",
+    "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
+    "section": "Design and Testing Methodology",
+    "text": "Design and Testing Methodology\nThe MCU communicates with the DS1722 digital temperature sensor over SPI. The clock of the SPI is set to 2.5 MHz by dividing the system clock of 80 MHz. Data is written to the temperature sensor to indicate which resolution the temperature should be read at. Then, temperature data is sent back from the sensor to the MCU, 8 bits at a time. The temperature is stored in two’s complement floating-point format.\nThe temperature read from the temperature sensor is converted back to Celsuis and displayed on a webpage, hosted on the ESP8266 WiFi development board. The MCU communicates with the ESP8266 via UART. Using the webpage, the user can set the temperature resolution and also control an output LED."
+  },
+  {
+    "objectID": "labs/lab6/lab6.html#technical-documentation",
+    "href": "labs/lab6/lab6.html#technical-documentation",
+    "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
+    "section": "Technical Documentation",
+    "text": "Technical Documentation\nThe source code for the project can be found in the associated Github repository\n\nSchematic\n \n\nFigure 1: Electrical schematic\n\n\n\nLogic Analyzer SPI transaction"
+  },
+  {
+    "objectID": "labs/lab6/lab6.html#results-and-discussion",
+    "href": "labs/lab6/lab6.html#results-and-discussion",
+    "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
+    "section": "Results and Discussion",
+    "text": "Results and Discussion"
+  },
+  {
+    "objectID": "labs/lab6/lab6.html#ai-prototype",
+    "href": "labs/lab6/lab6.html#ai-prototype",
+    "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
+    "section": "AI Prototype",
+    "text": "AI Prototype"
+  },
+  {
     "objectID": "labs/lab2/lab2.html",
     "href": "labs/lab2/lab2.html",
     "title": "Lab 2: Multiplexed 7-Segment Display",

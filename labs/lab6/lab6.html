@@ -154,8 +154,22 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#design-and-testing-methodology" id="toc-design-and-testing-methodology" class="nav-link" data-scroll-target="#design-and-testing-methodology">Design and Testing Methodology</a></li>
+  <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation</a>
+  <ul class="collapse">
+  <li><a href="#schematic" id="toc-schematic" class="nav-link" data-scroll-target="#schematic">Schematic</a></li>
+  <li><a href="#logic-analyzer-spi-transaction" id="toc-logic-analyzer-spi-transaction" class="nav-link" data-scroll-target="#logic-analyzer-spi-transaction">Logic Analyzer SPI transaction</a></li>
+  </ul></li>
+  <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion">Results and Discussion</a></li>
+  <li><a href="#ai-prototype" id="toc-ai-prototype" class="nav-link" data-scroll-target="#ai-prototype">AI Prototype</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -179,8 +193,37 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In this lab, a design was implemented on the MCU to read a temperature from a temperature sensor using SPI communication, and display this temperature on a webpage using a UART connection. Using the webpage, the resolution of the temperature sensor can be changed and a LED can be turned on and off.</p>
+</section>
+<section id="design-and-testing-methodology" class="level2">
+<h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
+<p>The MCU communicates with the DS1722 digital temperature sensor over SPI. The clock of the SPI is set to 2.5 MHz by dividing the system clock of 80 MHz. Data is written to the temperature sensor to indicate which resolution the temperature should be read at. Then, temperature data is sent back from the sensor to the MCU, 8 bits at a time. The temperature is stored in two’s complement floating-point format.</p>
+<p>The temperature read from the temperature sensor is converted back to Celsuis and displayed on a webpage, hosted on the ESP8266 WiFi development board. The MCU communicates with the ESP8266 via UART. Using the webpage, the user can set the temperature resolution and also control an output LED.</p>
+</section>
+<section id="technical-documentation" class="level2">
+<h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h2>
+<p>The source code for the project can be found in the associated <a href="https://github.com/emenemi1y/e155-lab6">Github repository</a></p>
+<section id="schematic" class="level3">
+<h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
+<img src="images/lab6schematic.png" class="img-fluid"> <br>
+<p>
+Figure 1: Electrical schematic
+</p>
+</section>
+<section id="logic-analyzer-spi-transaction" class="level3">
+<h3 class="anchored" data-anchor-id="logic-analyzer-spi-transaction">Logic Analyzer SPI transaction</h3>
+</section>
+</section>
+<section id="results-and-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="results-and-discussion">Results and Discussion</h2>
+</section>
+<section id="ai-prototype" class="level2">
+<h2 class="anchored" data-anchor-id="ai-prototype">AI Prototype</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
