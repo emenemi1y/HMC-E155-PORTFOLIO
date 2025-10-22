@@ -26,6 +26,24 @@ Figure 1: Electrical schematic
 
 ### Logic Analyzer SPI transaction
 
+![](images/DS1Z_QuickPrint2.png)
+<br> <p>
+Figure 2: Logic Analyzer SPI transaction
+</p>
+
 ## Results and Discussion
 
+The design performed as expected. It displayed a temperature in degrees Celsius at a selected resolution by communicating with a temperature sensor over SPI. The temperature sensor did jump from 24C to 27C occassionally, but this is likely due to imperfections in the temperature sensor. 
+
+## Conclusion
+
+The design successfully implemented SPI communication to communicate with a temperature sensor to get temperature measurements. It also communicated via UART with a WiFi module to host a webpage to display the temperature and the status of an LED. I spend around 20 hours on this lab, mostly due to stupid mistakes (such as not realizing that the ribbon cable for the oscilloscope had a few broken pins despite the fact that someone had told me that, and using a pin for CE that was also being used for UART). 
+
 ## AI Prototype
+
+I asked AI to create an html page to display the temperature for me. I fed it my C code and let it change just the HTML webiste. The website it gave me looked much cleaner than mine, and indicated that AI is good at doing simple tasks like creating a website that are standard for many different systems. The website that it gave me is shown below in Figure 3. I then asked it to create a function for measuring temperature. I think I need to do a bit more digging through the code that it gave me (the pin numbers are likely just off), but, while it successfully compiled and downloaded, it only output a temperature reading of zero. 
+
+![](images/AI_website.png)
+<br> <p>
+Figure 3: AI Prototype Website
+</p>
