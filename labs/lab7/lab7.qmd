@@ -9,7 +9,12 @@ In this lab, a design was implemented on an FPGA to perform 128-bit AES encrypti
 
 ## Design and Testing Methodology
 
-The design was implemented using two FSMs (shown below in Figure 1) on the FPGA. The FSM cycled through each of the 10 rounds as specified in the NIST FIPS 197 document, which included four steps: AddRoundKey, MixColumns, SubBytes, and ShiftRows. A key is sent from the MCU to the FPA over SPI. The key is expanded one at a time using a KeyExpansion module, which is used during the AddRoundKey operation. Flip flops are used to keep track of the rounds and the current state of the cyphertext. 
+The design was implemented using two FSMs (shown below in Figure 1) on the FPGA. The FSM cycled through each of the 10 rounds as specified in the NIST FIPS 197 document, which included four steps: AddRoundKey, MixColumns, SubBytes, and ShiftRows. A key is sent from the MCU to the FPA over SPI. The key is expanded one at a time using a KeyExpansion module, which is used during the AddRoundKey operation. Flip flops are used to keep track of the rounds and the current state of the cyphertext. A reset was controlled by a smaller FSM. 
+
+![](images/IMG_0577)
+<br> <p>
+Figure 1: Finite state machine for the cipher.
+</p>
 
 ## Technical Documentation
 
@@ -23,6 +28,11 @@ Figure 2: Block diagram
 </p>
 
 ### Schematic
+
+![](images/IMG_O579.jpeg)
+<br> <p>
+Figure 3: Schematic
+</p>
 
 ### Logic Analyzer SPI Transaction
 
