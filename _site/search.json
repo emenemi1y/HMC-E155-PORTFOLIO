@@ -333,14 +333,14 @@
     "href": "labs/lab7/lab7.html#design-and-testing-methodology",
     "title": "Lab 7: The Advanced Encryption Standard",
     "section": "Design and Testing Methodology",
-    "text": "Design and Testing Methodology\nThe design was implemented using two FSMs (shown below in Figure 1) on the FPGA. The FSM cycled through each of the 10 rounds as specified in the NIST FIPS 197 document, which included four steps: AddRoundKey, MixColumns, SubBytes, and ShiftRows. A key is sent from the MCU to the FPA over SPI. The key is expanded one at a time using a KeyExpansion module, which is used during the AddRoundKey operation. Flip flops are used to keep track of the rounds and the current state of the cyphertext."
+    "text": "Design and Testing Methodology\nThe design was implemented using two FSMs (shown below in Figure 1) on the FPGA. The FSM cycled through each of the 10 rounds as specified in the NIST FIPS 197 document, which included four steps: AddRoundKey, MixColumns, SubBytes, and ShiftRows. A key is sent from the MCU to the FPA over SPI. The key is expanded one at a time using a KeyExpansion module, which is used during the AddRoundKey operation. Flip flops are used to keep track of the rounds and the current state of the cyphertext. A reset was controlled by a smaller FSM.\n \n\nFigure 1: Finite state machine for the cipher."
   },
   {
     "objectID": "labs/lab7/lab7.html#technical-documentation",
     "href": "labs/lab7/lab7.html#technical-documentation",
     "title": "Lab 7: The Advanced Encryption Standard",
     "section": "Technical Documentation",
-    "text": "Technical Documentation\nThe source code for the project can be found in the associated Github repository\n\nBlock Diagram\n \n\nFigure 2: Block diagram\n\n\n\nSchematic\n\n\nLogic Analyzer SPI Transaction\n \n\nFigure 4: Oscilloscope logic analyzer SPI transaction for the second and third words of plaintext (MOSI from the MCU).\n\n \n\nFigure 5: Oscilloscope logic analyzer SPI transaction for the first word of ciphertext (SDO from the FPGA)."
+    "text": "Technical Documentation\nThe source code for the project can be found in the associated Github repository\n\nBlock Diagram\n \n\nFigure 2: Block diagram\n\n\n\nSchematic\n \n\nFigure 3: Schematic\n\n\n\nLogic Analyzer SPI Transaction\n \n\nFigure 4: Oscilloscope logic analyzer SPI transaction for the second and third words of plaintext (MOSI from the MCU).\n\n \n\nFigure 5: Oscilloscope logic analyzer SPI transaction for the first word of ciphertext (SDO from the FPGA)."
   },
   {
     "objectID": "labs/lab7/lab7.html#results-and-discussion",
