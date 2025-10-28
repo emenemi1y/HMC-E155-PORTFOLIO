@@ -361,7 +361,7 @@
     "href": "labs/lab7/lab7.html#ai-prototype",
     "title": "Lab 7: The Advanced Encryption Standard",
     "section": "AI Prototype",
-    "text": "AI Prototype"
+    "text": "AI Prototype\nThe AI was fairly good at parsing the AES document and implementing the key expansion in SystemVerilog. I think that it’s code was not as readable as it could be–the variable names were unnecessarily long. It changed the outputs and the inputs of my modules, but I assume that if I gave it my modules it would have been able to accurately create a working module. When I told it not to use the documentation, it created a method of using past outputs to create the current output. One thing I noticed was that it stored every single output instead of just the current one, which uses a lot of memory. If I were to actually use an LLM in my workflow, I would give it more of my existing code so it could build off of it."
   },
   {
     "objectID": "posts/first-post.html",
