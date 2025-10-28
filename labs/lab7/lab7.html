@@ -154,8 +154,27 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#design-and-testing-methodology" id="toc-design-and-testing-methodology" class="nav-link" data-scroll-target="#design-and-testing-methodology">Design and Testing Methodology</a></li>
+  <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation</a>
+  <ul class="collapse">
+  <li><a href="#block-diagram" id="toc-block-diagram" class="nav-link" data-scroll-target="#block-diagram">Block Diagram</a></li>
+  <li><a href="#schematic" id="toc-schematic" class="nav-link" data-scroll-target="#schematic">Schematic</a></li>
+  <li><a href="#logic-analyzer-spi-transaction" id="toc-logic-analyzer-spi-transaction" class="nav-link" data-scroll-target="#logic-analyzer-spi-transaction">Logic Analyzer SPI Transaction</a></li>
+  </ul></li>
+  <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion">Results and Discussion</a>
+  <ul class="collapse">
+  <li><a href="#testbench-simulations" id="toc-testbench-simulations" class="nav-link" data-scroll-target="#testbench-simulations">Testbench simulations</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#ai-prototype" id="toc-ai-prototype" class="nav-link" data-scroll-target="#ai-prototype">AI Prototype</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -179,8 +198,79 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In this lab, a design was implemented on an FPGA to perform 128-bit AES encryption. The MCU was configured to send a 128-bit plaintext message to the FPGA, which then encrypted the message, and send the ciphertext back to the MCU over SPI.</p>
+</section>
+<section id="design-and-testing-methodology" class="level2">
+<h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
+<p>The design was implemented using two FSMs (shown below in Figure 1) on the FPGA. The FSM cycled through each of the 10 rounds as specified in the NIST FIPS 197 document, which included four steps: AddRoundKey, MixColumns, SubBytes, and ShiftRows. A key is sent from the MCU to the FPA over SPI. The key is expanded one at a time using a KeyExpansion module, which is used during the AddRoundKey operation. Flip flops are used to keep track of the rounds and the current state of the cyphertext.</p>
+</section>
+<section id="technical-documentation" class="level2">
+<h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h2>
+<p>The source code for the project can be found in the associated <a href="https://github.com/emenemi1y/e155-lab7">Github repository</a></p>
+<section id="block-diagram" class="level3">
+<h3 class="anchored" data-anchor-id="block-diagram">Block Diagram</h3>
+<img src="images/lab6diagram.svg" class="img-fluid"> <br>
+<p>
+Figure 2: Block diagram
+</p>
+</section>
+<section id="schematic" class="level3">
+<h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
+</section>
+<section id="logic-analyzer-spi-transaction" class="level3">
+<h3 class="anchored" data-anchor-id="logic-analyzer-spi-transaction">Logic Analyzer SPI Transaction</h3>
+<img src="images/DS1Z_QuickPrint3.png" class="img-fluid"> <br>
+<p>
+Figure 4: Oscilloscope logic analyzer SPI transaction for the second and third words of plaintext (MOSI from the MCU).
+</p>
+<img src="images/DS1Z_QuickPrint4.png" class="img-fluid"> <br>
+<p>
+Figure 5: Oscilloscope logic analyzer SPI transaction for the first word of ciphertext (SDO from the FPGA).
+</p>
+</section>
+</section>
+<section id="results-and-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="results-and-discussion">Results and Discussion</h2>
+<p>The design performed as expected. It received plaintext over SPI from the MCU to the FPGA, and successfully converted the plaintext to ciphertext.</p>
+<section id="testbench-simulations" class="level3">
+<h3 class="anchored" data-anchor-id="testbench-simulations">Testbench simulations</h3>
+<img src="images/aes_core_tb_wf.png" class="img-fluid"> <br>
+<p>
+Figure 6: Testbench waveforms for aes_core.
+</p>
+<img src="images/aes_core_tb_output.png" class="img-fluid"> <br>
+<p>
+Figure 7: Output of testbench for aes_core.
+</p>
+<img src="images/aes_spi_tb_wf.png" class="img-fluid"> <br>
+<p>
+Figure 8: Testbench waveforms for aes_spi.
+</p>
+<img src="images/aes_spi_tb_output.png" class="img-fluid"> <br>
+<p>
+Figure 9: Output of testbench for aes_spi.
+</p>
+<img src="images/keyexpansion_tb_wf.png" class="img-fluid"> <br>
+<p>
+Figure 10: Testbench waveforms for keyexpansion.
+</p>
+<img src="images/shitrows_tb_wf.png" class="img-fluid"> <br>
+<p>
+Figure 11: Testbench waveforms for shiftrows.
+</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>The design successfully implemented SPI communication to facilitate communication between an FPGA and an MCU. The FPGA was programmed to convert a string of plaintext sent from the MCU into cyphertext (using the AES-128 bit standard)., and send that cyphertext back to the MCU. communicate with a temperature sensor to get temperature measurements. I spent around 12-15 hours on this lab.</p>
+</section>
+<section id="ai-prototype" class="level2">
+<h2 class="anchored" data-anchor-id="ai-prototype">AI Prototype</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

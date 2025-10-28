@@ -315,6 +315,55 @@
     "text": "AI Prototype Summary\nAI gave me the following code:\n #include \"stm32l432xx.h\"\n\n#define COUNTS_PER_REV   (408 * 4)      // quadrature x4 resolution\n#define SAMPLE_PERIOD_MS 100\n\nvolatile int32_t last_count = 0;\nvolatile float encoder_speed_rps = 0.0f;\n\n/* crude blocking delay assuming 4 MHz MSI clock */\nstatic void delay_ms(uint32_t ms)\n{\n    for (volatile uint32_t i = 0; i &lt; ms * 4000; i++);\n}\n\nvoid Encoder_Init(void)\n{\n    /* 1. Enable GPIOB and TIM2 clocks */\n    RCC-&gt;AHB2ENR  |= RCC_AHB2ENR_GPIOBEN;\n    RCC-&gt;APB1ENR1 |= RCC_APB1ENR1_TIM2EN;\n\n    /* 2. Configure PB0/PB1 as AF1 (TIM2_CH3/TIM2_CH4) */\n    GPIOB-&gt;MODER &= ~((3U &lt;&lt; (0 * 2)) | (3U &lt;&lt; (1 * 2)));   // clear mode bits\n    GPIOB-&gt;MODER |=  ((2U &lt;&lt; (0 * 2)) | (2U &lt;&lt; (1 * 2)));   // AF mode\n    GPIOB-&gt;AFR[0] &= ~((0xF &lt;&lt; (0 * 4)) | (0xF &lt;&lt; (1 * 4)));\n    GPIOB-&gt;AFR[0] |=  ((1U &lt;&lt; (0 * 4)) | (1U &lt;&lt; (1 * 4)));  // AF1 = TIM2\n    GPIOB-&gt;OSPEEDR |= (3U &lt;&lt; (0 * 2)) | (3U &lt;&lt; (1 * 2));    // high speed\n\n    /* 3. Configure TIM2 in encoder mode using CH3 & CH4 */\n    TIM2-&gt;CR1 = 0;                  // disable counter during setup\n    TIM2-&gt;SMCR = 3;                 // SMS = 011 → encoder mode 3 (count on both inputs)\n    TIM2-&gt;CCMR2 = (1U &lt;&lt; 0) | (1U &lt;&lt; 8);  // CC3S=01, CC4S=01 (map TI3 & TI4)\n    TIM2-&gt;CCER = 0;                 // both channels non-inverted\n    TIM2-&gt;ARR = 0xFFFFFFFF;         // 32-bit counter max\n    TIM2-&gt;CNT = 0;                  // reset counter\n    TIM2-&gt;CR1 |= TIM_CR1_CEN;       // enable counter\n}\n\nint32_t Encoder_GetCount(void)\n{\n    return (int32_t)TIM2-&gt;CNT;\n}\n\nfloat Encoder_GetSpeed(void)\n{\n    int32_t new_count = Encoder_GetCount();\n    int32_t delta = new_count - last_count;\n    last_count = new_count;\n\n    encoder_speed_rps = ((float)delta / COUNTS_PER_REV) / (SAMPLE_PERIOD_MS / 1000.0f);\n    return encoder_speed_rps;\n}\n\nint main(void)\n{\n    Encoder_Init();\n\n    while (1) {\n        delay_ms(SAMPLE_PERIOD_MS);\n        float speed = Encoder_GetSpeed();  // revolutions per second\n        // TODO: send via UART or use for control\n    }\n}\n\nAI was insistent on using Hardware Timer Encoder mode instead of the interrupts I told it to use. It took some fiddling with AI to get the code to fit with my system (using pins that were available on the breakout board, not using HAL since I didn’t have it on my computer and didn’t want to look for it, using a timer I wanted it to use), and then it didn’t even end up working. I am not completely sure what was wrong with it in the end, since I don’t understand Hardware Timer Encoder mode, but it did seem good at replacing pins I wanted it to replace and changing around the timers when I asked."
   },
   {
+    "objectID": "labs/lab7/lab7.html",
+    "href": "labs/lab7/lab7.html",
+    "title": "Lab 7: The Advanced Encryption Standard",
+    "section": "",
+    "text": "In this lab, a design was implemented on an FPGA to perform 128-bit AES encryption. The MCU was configured to send a 128-bit plaintext message to the FPGA, which then encrypted the message, and send the ciphertext back to the MCU over SPI."
+  },
+  {
+    "objectID": "labs/lab7/lab7.html#introduction",
+    "href": "labs/lab7/lab7.html#introduction",
+    "title": "Lab 7: The Advanced Encryption Standard",
+    "section": "",
+    "text": "In this lab, a design was implemented on an FPGA to perform 128-bit AES encryption. The MCU was configured to send a 128-bit plaintext message to the FPGA, which then encrypted the message, and send the ciphertext back to the MCU over SPI."
+  },
+  {
+    "objectID": "labs/lab7/lab7.html#design-and-testing-methodology",
+    "href": "labs/lab7/lab7.html#design-and-testing-methodology",
+    "title": "Lab 7: The Advanced Encryption Standard",
+    "section": "Design and Testing Methodology",
+    "text": "Design and Testing Methodology\nThe design was implemented using two FSMs (shown below in Figure 1) on the FPGA. The FSM cycled through each of the 10 rounds as specified in the NIST FIPS 197 document, which included four steps: AddRoundKey, MixColumns, SubBytes, and ShiftRows. A key is sent from the MCU to the FPA over SPI. The key is expanded one at a time using a KeyExpansion module, which is used during the AddRoundKey operation. Flip flops are used to keep track of the rounds and the current state of the cyphertext."
+  },
+  {
+    "objectID": "labs/lab7/lab7.html#technical-documentation",
+    "href": "labs/lab7/lab7.html#technical-documentation",
+    "title": "Lab 7: The Advanced Encryption Standard",
+    "section": "Technical Documentation",
+    "text": "Technical Documentation\nThe source code for the project can be found in the associated Github repository\n\nBlock Diagram\n \n\nFigure 2: Block diagram\n\n\n\nSchematic\n\n\nLogic Analyzer SPI Transaction\n \n\nFigure 4: Oscilloscope logic analyzer SPI transaction for the second and third words of plaintext (MOSI from the MCU).\n\n \n\nFigure 5: Oscilloscope logic analyzer SPI transaction for the first word of ciphertext (SDO from the FPGA)."
+  },
+  {
+    "objectID": "labs/lab7/lab7.html#results-and-discussion",
+    "href": "labs/lab7/lab7.html#results-and-discussion",
+    "title": "Lab 7: The Advanced Encryption Standard",
+    "section": "Results and Discussion",
+    "text": "Results and Discussion\nThe design performed as expected. It received plaintext over SPI from the MCU to the FPGA, and successfully converted the plaintext to ciphertext.\n\nTestbench simulations\n \n\nFigure 6: Testbench waveforms for aes_core.\n\n \n\nFigure 7: Output of testbench for aes_core.\n\n \n\nFigure 8: Testbench waveforms for aes_spi.\n\n \n\nFigure 9: Output of testbench for aes_spi.\n\n \n\nFigure 10: Testbench waveforms for keyexpansion.\n\n \n\nFigure 11: Testbench waveforms for shiftrows."
+  },
+  {
+    "objectID": "labs/lab7/lab7.html#conclusion",
+    "href": "labs/lab7/lab7.html#conclusion",
+    "title": "Lab 7: The Advanced Encryption Standard",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe design successfully implemented SPI communication to facilitate communication between an FPGA and an MCU. The FPGA was programmed to convert a string of plaintext sent from the MCU into cyphertext (using the AES-128 bit standard)., and send that cyphertext back to the MCU. communicate with a temperature sensor to get temperature measurements. I spent around 12-15 hours on this lab."
+  },
+  {
+    "objectID": "labs/lab7/lab7.html#ai-prototype",
+    "href": "labs/lab7/lab7.html#ai-prototype",
+    "title": "Lab 7: The Advanced Encryption Standard",
+    "section": "AI Prototype",
+    "text": "AI Prototype"
+  },
+  {
     "objectID": "posts/first-post.html",
     "href": "posts/first-post.html",
     "title": "Initial reflection",
