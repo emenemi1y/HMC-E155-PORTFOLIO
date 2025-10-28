@@ -1,3 +1,81 @@
 ---
 title: "Lab 7: The Advanced Encryption Standard"
+format: html
 ---
+
+## Introduction
+
+In this lab, a design was implemented on an FPGA to perform 128-bit AES encryption. The MCU was configured to send a 128-bit plaintext message to the FPGA, which then encrypted the message, and send the ciphertext back to the MCU over SPI.
+
+## Design and Testing Methodology
+
+The design was implemented using two FSMs (shown below in Figure 1) on the FPGA. The FSM cycled through each of the 10 rounds as specified in the NIST FIPS 197 document, which included four steps: AddRoundKey, MixColumns, SubBytes, and ShiftRows. A key is sent from the MCU to the FPA over SPI. The key is expanded one at a time using a KeyExpansion module, which is used during the AddRoundKey operation. Flip flops are used to keep track of the rounds and the current state of the cyphertext. 
+
+## Technical Documentation
+
+The source code for the project can be found in the associated <a href="https://github.com/emenemi1y/e155-lab7">Github repository</a>
+
+### Block Diagram
+
+![](images/lab6diagram.svg)
+<br> <p>
+Figure 2: Block diagram
+</p>
+
+### Schematic
+
+### Logic Analyzer SPI Transaction
+
+![](images/DS1Z_QuickPrint3.png)
+<br> <p>
+Figure 4: Oscilloscope logic analyzer SPI transaction for the second and third words of plaintext (MOSI from the MCU).
+</p>
+
+![](images/DS1Z_QuickPrint4.png)
+<br> <p>
+Figure 5: Oscilloscope logic analyzer SPI transaction for the first word of ciphertext (SDO from the FPGA).
+</p>
+
+## Results and Discussion
+
+The design performed as expected. It received plaintext over SPI from the MCU to the FPGA, and successfully converted the plaintext to ciphertext. 
+
+### Testbench simulations
+
+![](images/aes_core_tb_wf.png)
+<br> <p>
+Figure 6: Testbench waveforms for aes_core. 
+</p>
+
+![](images/aes_core_tb_output.png)
+<br> <p>
+Figure 7: Output of testbench for aes_core. 
+</p>
+
+![](images/aes_spi_tb_wf.png)
+<br> <p>
+Figure 8: Testbench waveforms for aes_spi. 
+</p>
+
+![](images/aes_spi_tb_output.png)
+<br> <p>
+Figure 9: Output of testbench for aes_spi. 
+</p>
+
+![](images/keyexpansion_tb_wf.png)
+<br> <p>
+Figure 10: Testbench waveforms for keyexpansion.
+</p>
+
+![](images/shitrows_tb_wf.png)
+<br> <p> 
+Figure 11: Testbench waveforms for shiftrows.
+</p>
+
+## Conclusion
+
+The design successfully implemented SPI communication to facilitate communication between an FPGA and an MCU. The FPGA was programmed to convert a string of plaintext sent from the MCU into cyphertext (using the AES-128 bit standard)., and send that cyphertext back to the MCU. communicate with a temperature sensor to get temperature measurements. I spent around 12-15 hours on this lab.
+
+## AI Prototype
+
+ 

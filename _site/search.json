@@ -81,21 +81,28 @@
     "href": "labs/lab6/lab6.html#technical-documentation",
     "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
     "section": "Technical Documentation",
-    "text": "Technical Documentation\nThe source code for the project can be found in the associated Github repository\n\nSchematic\n \n\nFigure 1: Electrical schematic\n\n\n\nLogic Analyzer SPI transaction"
+    "text": "Technical Documentation\nThe source code for the project can be found in the associated Github repository\n\nSchematic\n \n\nFigure 1: Electrical schematic\n\n\n\nLogic Analyzer SPI transaction\n \n\nFigure 2: Logic Analyzer SPI transaction"
   },
   {
     "objectID": "labs/lab6/lab6.html#results-and-discussion",
     "href": "labs/lab6/lab6.html#results-and-discussion",
     "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
     "section": "Results and Discussion",
-    "text": "Results and Discussion"
+    "text": "Results and Discussion\nThe design performed as expected. It displayed a temperature in degrees Celsius at a selected resolution by communicating with a temperature sensor over SPI. The temperature sensor did jump from 24C to 27C occassionally, but this is likely due to imperfections in the temperature sensor."
+  },
+  {
+    "objectID": "labs/lab6/lab6.html#conclusion",
+    "href": "labs/lab6/lab6.html#conclusion",
+    "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe design successfully implemented SPI communication to communicate with a temperature sensor to get temperature measurements. It also communicated via UART with a WiFi module to host a webpage to display the temperature and the status of an LED. I spend around 20 hours on this lab, mostly due to stupid mistakes (such as not realizing that the ribbon cable for the oscilloscope had a few broken pins despite the fact that someone had told me that, and using a pin for CE that was also being used for UART)."
   },
   {
     "objectID": "labs/lab6/lab6.html#ai-prototype",
     "href": "labs/lab6/lab6.html#ai-prototype",
     "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
     "section": "AI Prototype",
-    "text": "AI Prototype"
+    "text": "AI Prototype\nI asked AI to create an html page to display the temperature for me. I fed it my C code and let it change just the HTML webiste. The website it gave me looked much cleaner than mine, and indicated that AI is good at doing simple tasks like creating a website that are standard for many different systems. The website that it gave me is shown below in Figure 3. I then asked it to create a function for measuring temperature. I think I need to do a bit more digging through the code that it gave me (the pin numbers are likely just off), but, while it successfully compiled and downloaded, it only output a temperature reading of zero.\n \n\nFigure 3: AI Prototype Website"
   },
   {
     "objectID": "labs/lab2/lab2.html",
