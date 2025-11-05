@@ -205,7 +205,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="design-and-testing-methodology" class="level2">
 <h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
 <p>The design was implemented using two FSMs (shown below in Figure 1) on the FPGA. The FSM cycled through each of the 10 rounds as specified in the NIST FIPS 197 document, which included four steps: AddRoundKey, MixColumns, SubBytes, and ShiftRows. A key is sent from the MCU to the FPA over SPI. The key is expanded one at a time using a KeyExpansion module, which is used during the AddRoundKey operation. Flip flops are used to keep track of the rounds and the current state of the cyphertext. A reset was controlled by a smaller FSM.</p>
-<img src="images/IMG_0577.png" class="img-fluid"> <br>
+<img src="images/lab7schematic.png" class="img-fluid"> <br>
 <p>
 Figure 1: Finite state machine for the cipher.
 </p>
@@ -222,7 +222,7 @@ Figure 2: Block diagram
 </section>
 <section id="schematic" class="level3">
 <h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
-<img src="images/IMG_O579.jpeg" class="img-fluid"> <br>
+<img src="images/lab7schematic.png" class="img-fluid"> <br>
 <p>
 Figure 3: Schematic
 </p>
@@ -276,6 +276,7 @@ Figure 11: Testbench waveforms for shiftrows.
 </section>
 <section id="ai-prototype" class="level2">
 <h2 class="anchored" data-anchor-id="ai-prototype">AI Prototype</h2>
+<p>The AI was fairly good at parsing the AES document and implementing the key expansion in SystemVerilog. I think that it’s code was not as readable as it could be–the variable names were unnecessarily long. It changed the outputs and the inputs of my modules, but I assume that if I gave it my modules it would have been able to accurately create a working module. When I told it not to use the documentation, it created a method of using past outputs to create the current output. One thing I noticed was that it stored every single output instead of just the current one, which uses a lot of memory. If I were to actually use an LLM in my workflow, I would give it more of my existing code so it could build off of it.</p>
 
 
 </section>
