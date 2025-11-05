@@ -154,8 +154,22 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#design-and-testing-methodology" id="toc-design-and-testing-methodology" class="nav-link" data-scroll-target="#design-and-testing-methodology">Design and Testing Methodology</a></li>
+  <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation</a>
+  <ul class="collapse">
+  <li><a href="#schematic" id="toc-schematic" class="nav-link" data-scroll-target="#schematic">Schematic</a></li>
+  </ul></li>
+  <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion">Results and Discussion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#ai-prototype" id="toc-ai-prototype" class="nav-link" data-scroll-target="#ai-prototype">AI Prototype</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -179,8 +193,62 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In this lab, a design was implemented on the MCU to play a song on a speaker using the timers in the MCU. The song was read as a series of notes and durations. The notes were converted to PWM pulses to be output on the MCU to the speaker. An audio amplifier was used to both reduce the volume of the speaker and to prevent significant current being drawn from the MCU pins.</p>
+</section>
+<section id="design-and-testing-methodology" class="level2">
+<h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
+<p>The MCU takes a series of notes and durations and outputs PWM waveforms correponding to them. PWM mode was configured on the MCU for TIM16 so that the correct waveform could be output from a pin. Another general purpose timer (TIM15) was used to generate delays between each of the notes.</p>
+<p>The pitches were accurate within 1% accross the frequency range of 220-1000 Hz. The TIM16 clock was set to 1 MHz, and the values of ARR and CCR1 were set to achieve the right frequency. For 220 Hz, ARR was set to (int) (1000000/220) - 1 = 4544, and CCR1 was set to 4545 / 2 - 1= 2272. If each original clock unit takes 1/1000000 s = 1μs, then 4545 counts willtake 4.545 ms. The frequency corresponding to a period of 4.545 ms is 220.02 Hz, which is within 1% of the desired 220 Hz. For 1000 Hz, ARR was set to (int) (1000000/1000) - 1 = 999, and CCR1 was set to (int) (1000/2) - 1 = 499 to achieve a 50% duty cycle. Again, if each original clock unit takes 1μs, then the period of the PWM signal is 1 ms, which corresponds to a frequency of 1000 Hz (again within the desired 1% range).</p>
+<p><b> Minimum duration supported </b> The durations are determined by the delays of TIM15, which depends on the value that is stored in ARR. Since the base time unit for TIM15 is 1 ms, an ARR value of 1 corresponds to a delay of 1 ms. The shortest delay possible would correspond to a single clock cycle of TIM15, which is 1ms.</p>
+<p><b> Maximum duration supported </b> The ARR register for TIM15 is 16 bits. Therefore, the maximum duration supported corresponds to ARR = FFFFFFFF, or 65,535, and is 65535 seconds, or 18 hours, 12 minutes, and 15 seconds.</p>
+<p><b> Minimum frequency supported </b> The frequency is determined by the values in the ARR and CCR1 registers of TIM16. Because the clock of TIM16 is set to 1 MHz, ARR is calculated by dividing 100000 by the frequency (as an integer). The maximum value that can be stored in ARR is 65535, and therefore the minimum frequency that can be supported is roughly 15.26 Hz (1000000/15.26) = 65531. The CCR1 value is set to half of this, and therefore will not be overloaded for any frequency that the ARR can handle.</p>
+<p><b> Maximum frequency supported </b> Since the values in the ARR and CCR1 registers must be integers, the maximum frequency supported would correspond to ARR = 2 and CCR1 = 1, which would be 1000000 Hz / 2 = 5 kHz.</p>
+</section>
+<section id="technical-documentation" class="level2">
+<h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h2>
+<p>The source code for the project can be found in the associated <a href="https://github.com/emenemi1y/e155-lab4-again">Github repository</a></p>
+<section id="schematic" class="level3">
+<h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
+<img src="images/lab4_schematic.png" class="img-fluid"> <br>
+<p>
+Figure 1: Electrical schematic
+</p>
+</section>
+</section>
+<section id="results-and-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="results-and-discussion">Results and Discussion</h2>
+<p>The design performed as expected. It played a song on a speaker using the PWM and upcounting modes in the STM32L432KC microcontroller timers. The signal was driven through an audio amplifier that allowed for adujustment of the volume of the speaker with a potentiometer. Output frequencies and delays were accurate within 1%. See Figures 2, 3, and 4 below for the output freuqencies for 220, 550, and 1000 Hz, respectively.</p>
+<img src="images/DS1Z_QuickPrint1.png" class="img-fluid"> <br>
+<p>
+Figure 2: 220 Hz output waveform
+</p>
+<img src="images/DS1Z_QuickPrint3.png" class="img-fluid"> <br>
+<p>
+Figure 3: 550 Hz output waveform
+</p>
+<img src="images/DS1Z_QuickPrint2.png" class="img-fluid"> <br>
+<p>
+Figure 4: 1000 Hz output waveform
+</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>The design successfully implemented timers to control a speaker and play a song based on input frequencies and durations. It output the signal to an audio amplifier op-amp circuit, which allowed for volume adjustment using a potentiometer. I spent around 15 hours on this lab.</p>
+</section>
+<section id="ai-prototype" class="level2">
+<h2 class="anchored" data-anchor-id="ai-prototype">AI Prototype</h2>
+<p>I asked ChatGPT to answer the following question: “What timers should I use on the STM32L432KC to generate frequencies ranging from 220Hz to 1kHz? WHat’s the best choice of timer if I want to easily connect it to a GPIO pin? What formulae are relevant, and what registers need to be set to configure them properly?”</p>
+<p>It recommended that I use TIM2, TIM15, TIM16, or TIM17 because they all support Output Compare or PWM mode. It suggested that TIM2 would be the best because it is 32-bit, which makes it easier to hit low frequencies. The equations that it suggested were important were the ones that gave me the frequency of the timer, the frequency of the update, and the output frequency. These are the same formulas that I used when I was configuring PWM myself. It also gave me code to configure the registers, as can be seen in Figure 5 below.</p>
+<img src="images/image.png" class="img-fluid"> <br>
+<p>
+Figure 5: AI code output
+</p>
+<p>The AI output did not configure the BDTR registers like I did, but other than that the code was very similar. ChatGPT did not need me to upload the reference manual to get the right registers. The code it gave me (after I asked it to change to TIM16, PA6, and my 20MHz clock) successfully generated a square wave, but was not the frequency it said it would be (claimed 435 Hz, actually 86 Hz). This lab would have been a lot faster using AI.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
